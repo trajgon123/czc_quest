@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import pages.*;
 
 
 public class TestCart {
@@ -30,8 +31,8 @@ public class TestCart {
             System.out.println(SHARED.ActualDateAndTime.DateAndTimeStamp() + "Přecházím do košíku");
             driver.get(base_url+"/kosik");
             SHARED.DriverWait.waitForPageLoaded(driver);
-            if(driver.findElements(By.cssSelector("button[class='btn btn-purchase']")).size() != 0
-                    && driver.findElements( By.cssSelector(".op-content.clearfix") ).size() != 0){
+            System.out.println(driver.getPageSource());
+            if(driver.getPageSource().contains(cart.ContinuInOrderButtonText)){
                 System.out.println(SHARED.ActualDateAndTime.DateAndTimeStamp()+"Produkt je v košíku");
             }else {
                 System.out.println(SHARED.ActualDateAndTime.DateAndTimeStamp() + "!!! CHYBA Produkt není v košíku !!!");
@@ -43,9 +44,9 @@ public class TestCart {
 
         public static void addRandomItemToCart(WebDriver driver){
             System.out.println(SHARED.ActualDateAndTime.DateAndTimeStamp() + " Na hlavní stránce hledám produkt 'pouze dnes'");
-            if(driver.findElements( By.id("hp-tabpanel1") ).size() != 0){
+            if(pages.home_page.onlyTodayProduct(driver).isDisplayed()){
                 System.out.println(SHARED.ActualDateAndTime.DateAndTimeStamp() + "Přecházím na detail produktu");
-                driver.findElement(By.id("hp-tabpanel1")).click();
+                pages.home_page.onlyTodayProduct(driver).click();
                 SHARED.DriverWait.waitForPageLoaded(driver);
             }
             if( !driver.getCurrentUrl().contains("produkt")){
@@ -53,8 +54,23 @@ public class TestCart {
                 driver.get(base_url+"/a/230286/produkt");
                 SHARED.DriverWait.waitForPageLoaded(driver);
             }
+            if(driver.getPageSource().contains(product_detail.addToCartButtonText)){
+                System.out.println(SHARED.ActualDateAndTime.DateAndTimeStamp() + "Tlačítko přidat do košíku je aktivni");
+
+            }else{
+                System.out.println(SHARED.ActualDateAndTime.DateAndTimeStamp() + "Tlačítko přidat do košíku není aktivni (produkt je možná vyprodán)");
+                System.out.println(SHARED.ActualDateAndTime.DateAndTimeStamp() + "Přecházím na jiný produkt, stránka="+base_url+"/a/230286/produkt");
+                driver.get(base_url+"/a/230286/produkt");
+                SHARED.DriverWait.waitForPageLoaded(driver);
+
+            }
+
+
             System.out.println(SHARED.ActualDateAndTime.DateAndTimeStamp() + "Klikám na tlačítko přidat do košíku");
-            driver.findElement(By.cssSelector("span[class='btn-inner ico-basket']")).click();
+            pages.product_detail.addToCart(driver).click();
+
+
+
 
 
         }
