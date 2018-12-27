@@ -11,7 +11,7 @@ public class LoadProperties {
     public static Properties loadPropertiesFromFile(){
         Properties prop = new Properties();
         try {
-            prop.load(new FileInputStream(System.getProperty("user.dir")+"//src//main//java//project_properties.properties"));
+            prop.load(new FileInputStream(System.getProperty("user.dir")+"//src//main//resources//project_properties.properties"));
         } catch (FileNotFoundException e){
             System.out.println("Soubor project_properties.properties nenalezen !!!"+e);
         }

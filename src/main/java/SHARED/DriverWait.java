@@ -1,8 +1,14 @@
 package SHARED;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class DriverWait {
     public static void waitForPageLoaded(WebDriver driver) {
@@ -23,5 +29,14 @@ public class DriverWait {
         }
 
 
+    }
+
+    public static void implicitWaitPeriod(WebDriver driver, TimeUnit unit, int time){
+        driver.manage().timeouts().implicitlyWait(time, unit);
+    }
+
+    public static void explicitWaitPeriod(WebDriver driver, int time, By findElement){
+        WebDriverWait wait = new WebDriverWait(driver,time);
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(findElement));
     }
 }

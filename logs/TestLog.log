@@ -1,0 +1,8 @@
+[TRACE] 27-12-2018 15:43:05.213  - ** Spouštím test tests.TestUsingPOM **
+[TRACE] 27-12-2018 15:43:09.382  - Přecházím na stránku-https://www.czc.cz
+[TRACE] 27-12-2018 15:43:12.041  - Na hlavní stránce hledám produkt 'pouze dnes'
+[TRACE] 27-12-2018 15:43:12.974  - Přecházím na detail produktu
+[TRACE] 27-12-2018 15:43:17.189  - Klikám na tlačítko přidat do košíku
+[TRACE] 27-12-2018 15:43:18.541  - Přecházím do košíku
+[TRACE] 27-12-2018 15:43:20.578  - Produkt je v košíku
+[TRACE] 27-12-2018 15:43:20.581  - Ukončuji test
