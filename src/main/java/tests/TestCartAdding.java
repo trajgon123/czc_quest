@@ -16,6 +16,9 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebElement;
+import org.testng.ITestResult;
+import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -32,6 +35,7 @@ public class TestCartAdding {
     private HomePageObject homePageObject;
     private ProductDetailObject productDetailObject;
     private CartObject cartObject;
+    ITestResult result;
 
 
     @BeforeTest
@@ -106,9 +110,16 @@ public class TestCartAdding {
             driver.get(cartObject.getPageURL());
             SHARED.DriverWait.waitForPageLoaded(driver);
             cartObject.continueInOrderButton().isDisplayed();
-            logger.trace("Produkt je v košíku, zobrazuje se tlačítko");
+
+            if(cartObject.continueInOrderButton().isDisplayed()&&cartObject.orderItemsBox().isDisplayed()){
+                logger.trace("Produkt je v košíku");
+            }else{
+                logger.error("!!! Produkt není v košíku !!!");
+                fail();
+            }
+
         }catch(NoSuchElementException e){
-            logger.error("!!! Produkt není v košíku, nezobrazuje se tlačítko !!!"+ e.toString());
+            logger.error("!!! Produkt není v košíku !!!"+ e.toString());
             fail();
         }catch(Exception e){
             logger.error("!!! Neznámá chyba !!!"+e.toString());
@@ -121,7 +132,11 @@ public class TestCartAdding {
     public void tearDown(){
         logger.trace("Ukončuji test");
         FinishTest.endTest(driver);
+        result = Reporter.getCurrentTestResult();
+        logger.trace(result.toString());
     }
+
+
 }
 
 

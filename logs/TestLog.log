@@ -1,8 +1,9 @@
-[TRACE] 02-01-2019 11:09:13.892  - ** Spouštím test tests.TestCartAdding **
-[TRACE] 02-01-2019 11:09:18.127  - Přecházím na stránku -https://www.czc.cz
-[TRACE] 02-01-2019 11:09:20.917  - Na hlavní stránce hledám produkt 'pouze dnes'
-[TRACE] 02-01-2019 11:09:22.115  - Přecházím na detail produktu
-[TRACE] 02-01-2019 11:09:23.871  - Klikám na tlačítko přidat do košíku
-[TRACE] 02-01-2019 11:09:24.052  - Přecházím do košíku
-[TRACE] 02-01-2019 11:09:26.490  - Produkt je v košíku, zobrazuje se tlačítko
-[TRACE] 02-01-2019 11:09:26.493  - Ukončuji test
+[TRACE] 02-01-2019 14:10:19.159  - ** Spouštím test tests.TestCartAdding **
+[TRACE] 02-01-2019 14:10:23.390  - Přecházím na stránku -https://www.czc.cz
+[TRACE] 02-01-2019 14:10:25.920  - Na hlavní stránce hledám produkt 'pouze dnes'
+[TRACE] 02-01-2019 14:10:25.996  - Přecházím na detail produktu
+[TRACE] 02-01-2019 14:10:28.228  - Klikám na tlačítko přidat do košíku
+[TRACE] 02-01-2019 14:10:28.520  - Přecházím do košíku
+[TRACE] 02-01-2019 14:10:30.667  - Produkt je v košíku
+[TRACE] 02-01-2019 14:10:30.672  - Ukončuji test
+[TRACE] 02-01-2019 14:10:33.425  - [TestResult name=tearDown status=SUCCESS method=TestCartAdding.tearDown()[pri:0, instance:tests.TestCartAdding@b684286] output={null}]
