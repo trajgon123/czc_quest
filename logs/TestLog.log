@@ -1,4 +1,4 @@
-[TRACE] 27-12-2018 15:43:05.213  - ** Spouštím test tests.TestUsingPOM **
+[TRACE] 27-12-2018 15:43:05.213  -
 [TRACE] 27-12-2018 15:43:09.382  - Přecházím na stránku-https://www.czc.cz
 [TRACE] 27-12-2018 15:43:12.041  - Na hlavní stránce hledám produkt 'pouze dnes'
 [TRACE] 27-12-2018 15:43:12.974  - Přecházím na detail produktu

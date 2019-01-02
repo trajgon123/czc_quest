@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import pages.*;
 
 
-public class TestUsingPOM {
+public class TestCartAdding {
     private static String base_url;
     private static WebDriver driver;
     private static Properties prop;
@@ -44,23 +44,25 @@ public class TestUsingPOM {
 
     @Test
     public void executeTest(){
-        logger.trace("Přecházím na stránku-"+base_url);
-        driver.get(base_url);
-        SHARED.DriverWait.waitForPageLoaded(driver);
 
-        HomePageObject homePageObject=new HomePageObject(driver);
-        logger.trace("Na hlavní stránce hledám produkt 'pouze dnes'");
         try{
+            logger.trace("Přecházím na stránku-"+base_url);
+            driver.get(base_url);
+            SHARED.DriverWait.waitForPageLoaded(driver);
+
+            HomePageObject homePageObject=new HomePageObject(driver);
+            logger.trace("Na hlavní stránce hledám produkt 'pouze dnes'");
             homePageObject.OnlyTodayProduct().isDisplayed();
             logger.trace("Přecházím na detail produktu");
             homePageObject.clickOnlyTodayProduct();
         }catch(NoSuchElementException e){
             logger.trace("Produkt 'pouze dnes' na hlavní stránce není, přecházím na stránku="+base_url+"/a/230286/produkt");
             driver.get(base_url+"/a/230286/produkt");
+            SHARED.DriverWait.waitForPageLoaded(driver);
         }catch(Exception e){
             logger.error("!!! Neznámá chyba !!!"+e.toString());
         }
-        SHARED.DriverWait.waitForPageLoaded(driver);
+
 
         ProductDetailObject productDetailObject = new ProductDetailObject(driver);
         try{
