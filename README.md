@@ -1,4 +1,4 @@
-# H1 Příklad automatizovaného testu 
+# Příklad automatizovaného testu 
 
 *Zadání*
 Na eshopu CZC.cz napište test v nástroji Selenium. Test napište v Javě.
