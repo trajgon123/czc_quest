@@ -8,10 +8,10 @@ public class HomePageObject {
 
     WebDriver driver = null;
     By onlyTodayProduct = By.id("hp-tabpanel1");
+    final String pageURL="https://www.czc.cz";
 
     public HomePageObject(WebDriver _driver){
         this.driver = _driver;
-
     }
 
     public WebElement OnlyTodayProduct(){
@@ -20,6 +20,10 @@ public class HomePageObject {
 
     public void clickOnlyTodayProduct(){
         driver.findElement(onlyTodayProduct).click();
+    }
+
+    public String getPageURL(){
+        return  pageURL;
     }
 
 }

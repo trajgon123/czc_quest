@@ -8,6 +8,7 @@ public class ProductDetailObject {
 
     By addToCart = By.cssSelector("span[class='btn-inner ico-basket'");
     private static WebDriver driver = null;
+    final String pageExampleURL="https://www.czc.cz/a/230288/produkt";
 
     public ProductDetailObject(WebDriver _driver){
         this.driver = _driver;
@@ -21,7 +22,9 @@ public class ProductDetailObject {
         driver.findElement(addToCart).click();
     }
 
-
+    public String getPageExampleURL(){
+        return pageExampleURL;
+    }
 
 
 }

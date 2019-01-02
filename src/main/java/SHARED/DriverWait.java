@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
 public class DriverWait {
-    public static void waitForPageLoaded(WebDriver driver) throws InterruptedException {
+    public static void waitForPageLoaded(WebDriver driver) throws InterruptedException,Exception {
         ExpectedCondition<Boolean> expectation = new
                 ExpectedCondition<Boolean>() {
                     public Boolean apply(WebDriver driver) {
@@ -22,9 +22,6 @@ public class DriverWait {
             Thread.sleep(1000);
             org.openqa.selenium.support.ui.WebDriverWait wait = new org.openqa.selenium.support.ui.WebDriverWait(driver, 30);
             wait.until(expectation);
-
-
-
 
     }
 

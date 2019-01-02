@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -18,85 +21,99 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.*;
 
+import static org.testng.Assert.fail;
+
 
 public class TestCartAdding {
-    private static String base_url;
+    private static String home_url;
     private static WebDriver driver;
     private static Properties prop;
     private static Logger logger = null;
+    private HomePageObject homePageObject;
+    private ProductDetailObject productDetailObject;
+    private CartObject cartObject;
 
 
     @BeforeTest
     public void prepareTest() {
-
+        try{
         //načti properties
         Properties prop = SHARED.LoadProperties.loadPropertiesFromFile();
-        base_url = prop.getProperty("base_url");
+        home_url = prop.getProperty("home_url");
 
         //nastartuj logger
         logger = LogManager.getLogger(this.getClass().getName()+".class");
         logger.trace("** Spouštím test "+this.getClass().getName()+" **");
         driver = ChromeWebDriver.WebDriverInit();
+
         //nastav implicitní Wait
         DriverWait.implicitWaitPeriod(driver,TimeUnit.SECONDS,10);
 
+        //inicializace PAGE objektů
+        homePageObject=new HomePageObject(driver);
+        productDetailObject = new ProductDetailObject(driver);
+        cartObject = new CartObject(driver);
+
+        }catch (FileNotFoundException e){
+           logger.error("!!! Soubor nenalezen (FileNotFoundException) !!! "+e.toString());
+           fail();
+        }catch (IOException e) {
+            logger.error("!!! Chyba při práci se souborem (IOException)!!! "+e.toString());
+            fail();
+        }catch (Exception e) {
+            logger.error("!!! Neznámá chyba !!! " + e.toString());
+            fail();
+        }
     }
 
-    @Test
-    public void executeTest(){
-
+        @Test
+       public void executeTest(){
+        //přejdi na detail produktu
         try{
-            logger.trace("Přecházím na stránku-"+base_url);
-            driver.get(base_url);
+            logger.trace("Přecházím na stránku -"+homePageObject.getPageURL());
+            driver.get(homePageObject.getPageURL());
             SHARED.DriverWait.waitForPageLoaded(driver);
-
-            HomePageObject homePageObject=new HomePageObject(driver);
             logger.trace("Na hlavní stránce hledám produkt 'pouze dnes'");
             homePageObject.OnlyTodayProduct().isDisplayed();
             logger.trace("Přecházím na detail produktu");
             homePageObject.clickOnlyTodayProduct();
+        }catch(NoSuchElementException e) {
+            logger.trace("Produkt 'pouze dnes' na hlavní stránce není, přecházím na stránku=" + productDetailObject.getPageExampleURL());
+            driver.get(productDetailObject.getPageExampleURL());
+        }catch (InterruptedException e) {
+            logger.error("!!! Vyskytla se InterruptedException chyba !!!"+e.toString());
+            fail();
+        }catch(Exception e){
+            logger.error("!!! Neznámá chyba !!!"+e.toString());
+            fail();
+        }
+
+        //klikni na tlačítko přidat do košíku
+        try{
+            logger.trace("Klikám na tlačítko přidat do košíku");
+            productDetailObject.clickAddToCartButton();
         }catch(NoSuchElementException e){
-            logger.trace("Produkt 'pouze dnes' na hlavní stránce není, přecházím na stránku="+base_url+"/a/230286/produkt");
-            driver.get(base_url+"/a/230286/produkt");
+            logger.error("!!! Tlačítko přidat do košíku nenalezeno !!!" + e.toString());
+            fail();
+        }catch(Exception e){
+            logger.error("!!! Neznámá chyba !!!"+e.toString());
+            fail();
+        }
+
+        //ověř produkt v košíku
+        try{
+            logger.trace("Přecházím do košíku");
+            driver.get(cartObject.getPageURL());
             SHARED.DriverWait.waitForPageLoaded(driver);
-        }catch(Exception e){
-            logger.error("!!! Neznámá chyba !!!"+e.toString());
-        }
-
-
-        ProductDetailObject productDetailObject = new ProductDetailObject(driver);
-        try{
-            productDetailObject.addToCartButton().isDisplayed();
-            logger.trace("Klikám na tlačítko přidat do košíku");
-            productDetailObject.clickAddToCartButton();
-        }catch(NoSuchElementException e){
-            logger.trace("Tlačítko přidat do košíku nenalezeno, produkt je pravděpodobně vyprodán.");
-            logger.trace("Přecházím na stránku="+base_url+"/a/230286/produkt");
-            driver.get(base_url+"/a/230286/produkt");
-            logger.trace("Klikám na tlačítko přidat do košíku");
-            productDetailObject.clickAddToCartButton();
-        }catch(Exception e){
-            logger.error("!!! Neznámá chyba !!!"+e.toString());
-        }
-
-       SHARED.DriverWait.waitForPageLoaded(driver);
-
-
-        logger.trace("Přecházím do košíku");
-        driver.get(base_url+"/kosik");
-        SHARED.DriverWait.waitForPageLoaded(driver);
-        CartObject cartObject = new CartObject(driver);
-
-        try{
             cartObject.continueInOrderButton().isDisplayed();
-            logger.trace("Produkt je v košíku");
+            logger.trace("Produkt je v košíku, zobrazuje se tlačítko");
         }catch(NoSuchElementException e){
-            logger.error("!!! Produkt není v košíku !!!"+ e.toString());
+            logger.error("!!! Produkt není v košíku, nezobrazuje se tlačítko !!!"+ e.toString());
+            fail();
         }catch(Exception e){
             logger.error("!!! Neznámá chyba !!!"+e.toString());
+            fail();
         }
-
-
 
     }
 

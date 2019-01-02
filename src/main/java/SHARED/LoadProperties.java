@@ -8,16 +8,9 @@ import java.util.Properties;
 public class LoadProperties {
 
 
-    public static Properties loadPropertiesFromFile(){
+    public static Properties loadPropertiesFromFile() throws FileNotFoundException,IOException,Exception {
         Properties prop = new Properties();
-        try {
-            prop.load(new FileInputStream(System.getProperty("user.dir")+"//src//main//resources//project_properties.properties"));
-        } catch (FileNotFoundException e){
-            System.out.println("Soubor project_properties.properties nenalezen !!!"+e);
-        }
-        catch (IOException e) {
-            System.out.println("Chyba při práci se souborem project_properties.properties !!!"+e);
-        }
-      return prop;
+        prop.load(new FileInputStream(System.getProperty("user.dir")+"//src//main//resources//project_properties.properties"));
+        return prop;
     }
 }
