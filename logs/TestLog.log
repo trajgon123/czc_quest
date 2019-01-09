@@ -1,4 +1,9 @@
-[TRACE] 09-01-2019 12:32:16.724  - ** SpouÅ¡tÃ­m test
-[TRACE] 09-01-2019 12:32:21.008  - PÅ™echÃ¡zÃ­m na strÃ¡nku -https://www.czc.cz
-[TRACE] 09-01-2019 12:32:24.033  - Na hlavnÃ­ strÃ¡nce hledÃ¡m produkt 'pouze dnes'
-[TRACE] 09-01-2019 12:32:25.520  - PÅ™echÃ¡zÃ­m na detail produktu
+[TRACE] 09-01-2019 14:34:35.444  - ** Spouštím test tests.TestOne **
+[TRACE] 09-01-2019 14:34:41.477  - Pøecházím na stránku -https://www.czc.cz
+[TRACE] 09-01-2019 14:34:44.437  - Na hlavní stránce hledám produkt 'pouze dnes'
+[TRACE] 09-01-2019 14:34:46.074  - Pøecházím na detail produktu
+[TRACE] 09-01-2019 14:34:47.947  - Klikám na tlaèítko pøidat do košíku
+[TRACE] 09-01-2019 14:34:48.141  - Pøecházím do košíku
+[TRACE] 09-01-2019 14:34:50.446  - Produkt je v košíku
+[TRACE] 09-01-2019 14:34:50.449  - Ukonèuji test
+[TRACE] 09-01-2019 14:34:53.219  - [TestResult name=tearDown status=SUCCESS method=TestOne.tearDown()[pri:0, instance:tests.TestOne@3cbbc1e0] output={null}]
