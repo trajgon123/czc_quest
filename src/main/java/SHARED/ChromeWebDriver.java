@@ -18,7 +18,7 @@ public class ChromeWebDriver {
     public static WebDriver WebDriverInit() {
 
         String pathtodriver = System.getProperty("user.dir")+"\\src\\main\\resources\\chromedriver.exe";
-        //Test if chromedriver is found
+        //TestOne if chromedriver is found
         File f = new File(pathtodriver);
         if(!f.exists()) {
             System.out.println("ChromeDriver nenalezen !!! "+System.getProperty("user.dir")+"\\src\\main\\resources\\chromedriver.exe");

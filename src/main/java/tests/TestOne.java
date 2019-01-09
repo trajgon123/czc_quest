@@ -27,7 +27,7 @@ import pages.*;
 import static org.testng.Assert.fail;
 
 
-public class TestCartAdding {
+public class TestOne {
     private static String home_url;
     private static WebDriver driver;
     private static Properties prop;
@@ -70,7 +70,7 @@ public class TestCartAdding {
         }
     }
 
-        @Test
+        @org.testng.annotations.Test
        public void executeTest(){
         //přejdi na detail produktu
         try{
