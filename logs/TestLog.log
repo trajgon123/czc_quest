@@ -1,9 +1,14 @@
-[TRACE] 09-01-2019 14:45:33.565  - ** Spouštím test tests.TestOne **
-[ERROR] 09-01-2019 14:45:40.084  - !!! Neznámá chyba !!! org.openqa.selenium.SessionNotCreatedException: session not created
-from chrome not reachable
+[TRACE] 09-01-2019 14:48:43.775  - ** Spouštím test tests.TestOne **
+[TRACE] 09-01-2019 14:48:49.128  - Pøecházím na stránku -https://www.czc.cz
+[TRACE] 09-01-2019 14:48:51.601  - Na hlavní stránce hledám produkt 'pouze dnes'
+[TRACE] 09-01-2019 14:48:52.537  - Pøecházím na detail produktu
+[ERROR] 09-01-2019 14:48:57.072  - !!! Neznámá chyba !!!org.openqa.selenium.WebDriverException: chrome not reachable
   (Session info: chrome=71.0.3578.98)
   (Driver info: chromedriver=2.45.615291 (ec3682e3c9061c10f26ea9e5cdcf3c53f3f74387),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 4.85 seconds
+Command duration or timeout: 0 milliseconds
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'KONIR', ip: '10.17.4.87', os.name: 'Windows Server 2012 R2', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_171'
-Driver info: driver.version: ChromeWebDriver
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.45.615291 (ec3682e3c9061c..., userDataDir: C:\Users\konir\AppData\Loca...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62262}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 71.0.3578.98, webStorageEnabled: true}
+Session ID: efc2107b74e857f2e569a26fd6c6bdaa
+[TRACE] 09-01-2019 14:48:57.100  - Ukonèuji test
