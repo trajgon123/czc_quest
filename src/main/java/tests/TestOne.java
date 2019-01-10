@@ -47,7 +47,7 @@ public class TestOne {
 
         //nastartuj logger
         logger = LogManager.getLogger(this.getClass().getName()+".class");
-        logger.trace("** Spouštím test "+this.getClass().getName()+" **");
+        logger.trace("** Spouštím TestHomePage "+this.getClass().getName()+" **");
         driver = ChromeWebDriver.WebDriverInit();
 
         //nastav implicitní Wait
@@ -130,7 +130,7 @@ public class TestOne {
 
     @AfterTest
     public void tearDown(){
-        logger.trace("Ukončuji test");
+        logger.trace("Ukončuji TestHomePage");
         FinishTest.endTest(driver);
         result = Reporter.getCurrentTestResult();
         logger.trace(result.toString());
